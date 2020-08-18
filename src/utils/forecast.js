@@ -9,7 +9,8 @@ const forecast = (lat, lon, callback) => {
         } else if (body.cod === "400") {
             callback(`Unable to find location`, undefined);
         } else {
-            callback(undefined, `It is currently ${body.wind.deg} degrees out. Temperature is ${body.main.temp} celcius`);
+            callback(undefined, `${body.weather[0].description}. It is currently ${body.wind.deg} degrees out, with a temperature of ${(body.main.temp - 273).toFixed(2)} ℃ and a wind speed of ${body.wind.speed} m/s`);
+            console.log(body);
         };
     });
 };
